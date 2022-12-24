@@ -1,6 +1,8 @@
 package ma.enset.radarservice.commands.aggregates;
 
 import ma.enset.commonapi.commands.CreateRadarCommand;
+import ma.enset.commonapi.commands.PassedVehiculeRadarCommand;
+import ma.enset.commonapi.events.RadarCatchSpeedEvent;
 import ma.enset.commonapi.events.RadarCreatedEvent;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
@@ -30,6 +32,17 @@ public class RadarAggregate {
                 command.getMaxSpeed(),
                 command.getLatitude(),
                 command.getLongitude()));
+    }
+
+    @CommandHandler
+    public RadarAggregate(PassedVehiculeRadarCommand command){
+        AggregateLifecycle.apply(new RadarCatchSpeedEvent(
+                command.getId(),
+                command.getMatricule(),
+                command.getVehicleSpeed(),
+                command.getRadarId(),
+                command.getRadarSpeed()
+                ));
     }
 
     @EventSourcingHandler //change the state of the aggregate

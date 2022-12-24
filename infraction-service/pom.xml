@@ -59,6 +59,13 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.axonframework/axon-distributed-commandbus -->
+        <dependency>
+            <groupId>org.axonframework</groupId>
+            <artifactId>axon-distributed-commandbus</artifactId>
+            <version>3.0-RC1</version>
+        </dependency>
+
     </dependencies>
 
     <build>

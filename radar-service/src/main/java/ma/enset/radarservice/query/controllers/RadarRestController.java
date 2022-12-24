@@ -3,6 +3,7 @@ package ma.enset.radarservice.query.controllers;
 import lombok.AllArgsConstructor;
 import ma.enset.commonapi.queries.FindAllRadars;
 import ma.enset.radarservice.query.entities.Radar;
+import org.axonframework.commandhandling.distributed.DistributedCommandBus;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,4 +22,6 @@ public class RadarRestController {
     public List<Radar> getAll(){
         return queryGateway.query(new FindAllRadars(), ResponseTypes.multipleInstancesOf(Radar.class)).join();
     }
+
+
 }

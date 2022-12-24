@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import ma.enset.commonapi.events.VehiculeCreatedEvent;
 import ma.enset.commonapi.queries.GetVehicule;
 import ma.enset.commonapi.queries.GetVehicules;
+import ma.enset.commonapi.queries.GetVehiculesByOwnerId;
 import ma.enset.immatriculationservice.query.entities.Owner;
 import ma.enset.immatriculationservice.query.entities.Vehicule;
 import ma.enset.immatriculationservice.query.repositories.OwnerRepository;
@@ -51,5 +52,9 @@ public class VehiculeServiceHandler {
         return vehiculeRepository.findById(query.getId()).get();
     }
 
+    @QueryHandler
+    public List<Vehicule> on(GetVehiculesByOwnerId query) {
+        return vehiculeRepository.findByProprietaireIdEquals(query.getId());
+    }
 
 }

@@ -1,6 +1,8 @@
 package ma.enset.immatriculationservice.query.controllers;
 
 import lombok.AllArgsConstructor;
+import ma.enset.commonapi.dtos.InfractionResponseDTO;
+import ma.enset.commonapi.queries.GetInfractionsByVehicle;
 import ma.enset.commonapi.queries.GetVehicule;
 import ma.enset.commonapi.queries.GetVehicules;
 import ma.enset.immatriculationservice.query.entities.Owner;
@@ -33,5 +35,8 @@ public class VehiculeQueryController {
         return queryGateway.query(new GetVehicule(id), Owner.class).join();
     }
 
-
+    @GetMapping(path = "/byMartricule/{matricule}")
+    public List<InfractionResponseDTO> getVehiculeByMatricule(@PathVariable String matricule) {
+        return queryGateway.query(new GetInfractionsByVehicle(matricule), ResponseTypes.multipleInstancesOf(InfractionResponseDTO.class)).join();
+    }
 }
