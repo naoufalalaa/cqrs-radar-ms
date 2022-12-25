@@ -20,6 +20,7 @@ import java.util.List;
 @RequestMapping("/query/owner")
 @AllArgsConstructor
 @Service
+@CrossOrigin(origins = "*")
 public class OwnerQueryController {
     private QueryGateway queryGateway;
 
@@ -34,13 +35,5 @@ public class OwnerQueryController {
         return queryGateway.query(new GetOwner(id), Owner.class).join();
     }
 
-    @GetMapping(path = "/infraction/{id}")
-    public List<InfractionResponseDTO> getInfractionsByOwnerId(@PathVariable String id) {
-        List<Vehicule> vehicules = queryGateway.query(new GetVehiculesByOwnerId(id), ResponseTypes.multipleInstancesOf(Vehicule.class)).join();
-        List<InfractionResponseDTO> infractionResponseDTOS = new ArrayList<>();
-        for (Vehicule vehicule : vehicules) {
-            infractionResponseDTOS.addAll(queryGateway.query(new GetInfractionsByVehicle(vehicule.getMatricule()), ResponseTypes.multipleInstancesOf(InfractionResponseDTO.class)).join());
-        }
-        return infractionResponseDTOS;
-    }
+
 }

@@ -8,6 +8,8 @@ import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
 
+import java.util.UUID;
+
 @Aggregate
 public class VehiculeAggregate {
     @AggregateIdentifier
@@ -24,11 +26,11 @@ public class VehiculeAggregate {
 
     @CommandHandler
     public VehiculeAggregate(CreateVehiculeCommand command) {
-        if (command.getMatricule() == null || command.getMatricule().isEmpty()) {
-            throw new IllegalArgumentException("Matricule cannot be empty");
+        if (command.getMatricule() == null || command.getMatricule().isEmpty() || command.getMarque() == null || command.getMarque().isEmpty() || command.getModele() == null || command.getModele().isEmpty() || command.getPuissance() == 0 || command.getProprietaire() == null || command.getProprietaire().isEmpty()) {
+            throw new IllegalArgumentException("No field can be empty");
         }
         AggregateLifecycle.apply(new VehiculeCreatedEvent(
-                command.getId(),
+                UUID.randomUUID().toString(),
                 command.getMatricule(),
                 command.getMarque(),
                 command.getModele(),

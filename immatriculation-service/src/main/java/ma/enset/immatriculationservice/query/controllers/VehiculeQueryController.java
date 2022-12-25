@@ -10,16 +10,14 @@ import ma.enset.immatriculationservice.query.entities.Vehicule;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/query/vehicule")
 @AllArgsConstructor
+@CrossOrigin(origins = "*")
 @Service
 public class VehiculeQueryController {
     private QueryGateway queryGateway;
@@ -35,8 +33,4 @@ public class VehiculeQueryController {
         return queryGateway.query(new GetVehicule(id), Owner.class).join();
     }
 
-    @GetMapping(path = "/byMartricule/{matricule}")
-    public List<InfractionResponseDTO> getVehiculeByMatricule(@PathVariable String matricule) {
-        return queryGateway.query(new GetInfractionsByVehicle(matricule), ResponseTypes.multipleInstancesOf(InfractionResponseDTO.class)).join();
-    }
 }

@@ -15,6 +15,7 @@ import java.util.concurrent.CompletableFuture;
 @RequestMapping("/query/infraction")
 @AllArgsConstructor
 @Service
+@CrossOrigin(origins = "*")
 public class InfractionQueryHandler {
     private QueryGateway queryGateway;
 

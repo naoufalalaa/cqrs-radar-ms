@@ -29,16 +29,22 @@ public class VehiculeServiceHandler {
     @Transactional
     public void on(VehiculeCreatedEvent event) {
         log.info("VehiculeCreatedEvent: {}", event);
-        Owner owner = ownerRepository.findById(event.getProprietaire()).get();
-        Vehicule vehicule = new Vehicule();
-        vehicule.setId(event.getId());
-        vehicule.setMatricule(event.getMatricule());
-        vehicule.setMarque(event.getMarque());
-        vehicule.setModele(event.getModele());
-        vehicule.setPuissance(event.getPuissance());
-        vehicule.setOwner(owner);
-        vehicule.setProprietaireId(owner.getId());
-        vehiculeRepository.save(vehicule);
+        System.out.println("VehiculeCreatedEvent: " + event.toString());
+        System.out.println("VehiculeCreatedEvent: " + event.getId());
+        System.out.println("VehiculeCreatedEvent: " + event.getProprietaire());
+        if(event.getProprietaire()!= null) {
+            Owner owner = ownerRepository.findById(event.getProprietaire()).get();
+            System.out.println("owner: " + owner.getName());
+            Vehicule vehicule = new Vehicule();
+            vehicule.setId(event.getId());
+            vehicule.setMatricule(event.getMatricule());
+            vehicule.setMarque(event.getMarque());
+            vehicule.setModele(event.getModele());
+            vehicule.setPuissance(event.getPuissance());
+            vehicule.setOwner(owner);
+            vehicule.setProprietaireId(owner.getId());
+            vehiculeRepository.save(vehicule);
+        }
     }
 
 

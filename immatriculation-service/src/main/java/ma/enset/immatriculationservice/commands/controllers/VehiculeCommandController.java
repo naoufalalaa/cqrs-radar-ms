@@ -5,10 +5,7 @@ import ma.enset.commonapi.commands.CreateVehiculeCommand;
 import ma.enset.commonapi.dtos.CreateVehiculeRequestDTO;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -17,6 +14,7 @@ import java.util.concurrent.CompletableFuture;
 @RequestMapping("/command/vehicule")
 @AllArgsConstructor
 @Service
+@CrossOrigin(origins = "*")
 public class VehiculeCommandController {
     private CommandGateway commandGateway;
 

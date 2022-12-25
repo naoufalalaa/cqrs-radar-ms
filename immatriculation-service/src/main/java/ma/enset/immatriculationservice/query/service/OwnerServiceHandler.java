@@ -21,6 +21,7 @@ import java.util.List;
 public class OwnerServiceHandler {
     private OwnerRepository ownerRepository;
 
+
     @EventHandler
     @Transactional
     public void on(OwnerCreatedEvent event) {

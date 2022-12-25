@@ -18,6 +18,7 @@ import java.util.concurrent.CompletableFuture;
 @RequestMapping("/command/radar")
 @AllArgsConstructor
 @Service
+@CrossOrigin(origins = "*")
 public class RadarCommandController {
     private CommandGateway commandGateway;
 
