@@ -15,4 +15,5 @@ public class InfractionCreationRequestDTO {
     private String radarId;
     private double radarSpeed;
     private Date date;
+    private double amende;
 }

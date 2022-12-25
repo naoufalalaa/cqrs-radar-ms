@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.2</version>
+        <version>2.7.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ma.enset</groupId>
@@ -18,17 +18,16 @@
         <spring-cloud.version>2021.0.4</spring-cloud.version>
     </properties>
     <dependencies>
-<!--
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-            <version>2.7.5</version>
+            <version>2.7.6</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
--->
+
         <dependency>
             <groupId>com.example</groupId>
             <artifactId>common-api</artifactId>
@@ -42,12 +41,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>2.5.2</version>
+            <version>2.7.6</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>2.5.2</version>
+            <version>2.7.6</version>
         </dependency>
 
         <dependency>
@@ -64,7 +63,7 @@
         <dependency>
             <groupId>org.axonframework</groupId>
             <artifactId>axon-spring-boot-starter</artifactId>
-            <version>4.4.3</version>
+            <version>4.6.1</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.axonframework</groupId>
@@ -80,7 +79,7 @@
         </dependency>
 
     </dependencies>
-    <!--
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -92,7 +91,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
--->
+
     <build>
         <plugins>
             <plugin>

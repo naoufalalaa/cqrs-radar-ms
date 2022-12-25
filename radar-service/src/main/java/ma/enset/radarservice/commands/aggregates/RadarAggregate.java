@@ -11,6 +11,7 @@ import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.modelling.command.AggregateMember;
 import org.axonframework.spring.stereotype.Aggregate;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,14 +57,14 @@ public class RadarAggregate {
     public void handle (PassedVehiculeRadarCommand command){
         if(command.getVehicleSpeed() > command.getRadarSpeed()){
             log.info("---New Vehicle OversSpeed Detected---");
-
             // publish event
             AggregateLifecycle.apply(new RadarCatchSpeedEvent(
                     UUID.randomUUID().toString(),
                     command.getMatricule(),
                     command.getVehicleSpeed(),
                     command.getRadarId(),
-                    command.getRadarSpeed()
+                    command.getRadarSpeed(),
+                    UUID.randomUUID().toString()
             ));
         }
     }
@@ -71,6 +72,7 @@ public class RadarAggregate {
     @EventSourcingHandler
     public void on(RadarCatchSpeedEvent event){
         log.info("RadarCatchSpeedEvent occured");
+        this.radarId = event.getRadarId();
         // new over speeder
         OverSpeeder overSpeeder = new OverSpeeder(
                 UUID.randomUUID().toString(),
@@ -78,9 +80,13 @@ public class RadarAggregate {
                 event.getVehiculeSpeed()
         );
         // add to list
-        overSpeeders.add(overSpeeder);
+        this.overSpeeders.add(overSpeeder);
         log.info("New OverSpeeder added to list : " + overSpeeder.getMatricule());
     }
 
+    @ExceptionHandler
+    public void handle(IllegalArgumentException e){
+        log.error("Exception occured : " + e.getMessage());
+    }
 
 }

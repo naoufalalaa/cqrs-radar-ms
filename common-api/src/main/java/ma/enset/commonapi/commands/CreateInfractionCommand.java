@@ -11,13 +11,15 @@ public class CreateInfractionCommand extends BaseCommand<String> {
     @Getter private Date date;
     @Getter private String radarId;
     @Getter private double maxSpeedAllowed;
+    @Getter private double amende;
 
-    public CreateInfractionCommand(String id, String matricule, double vehicleSpeed, Date date, String radarId, double maxSpeedAllowed) {
+    public CreateInfractionCommand(String id, String matricule, double vehicleSpeed, Date date, String radarId, double maxSpeedAllowed, double amende) {
         super(id);
         this.matricule = matricule;
         this.vehicleSpeed = vehicleSpeed;
         this.date = date;
         this.radarId = radarId;
         this.maxSpeedAllowed = maxSpeedAllowed;
+        this.amende = amende;
     }
 }

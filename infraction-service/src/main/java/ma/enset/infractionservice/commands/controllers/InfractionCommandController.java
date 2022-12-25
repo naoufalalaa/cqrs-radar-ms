@@ -29,8 +29,8 @@ public class InfractionCommandController {
                 infractionCreationRequestDTO.getSpeed(),
                 infractionCreationRequestDTO.getDate(),
                 infractionCreationRequestDTO.getRadarId(),
-                infractionCreationRequestDTO.getRadarSpeed()
-        ));
+                infractionCreationRequestDTO.getRadarSpeed(),
+                infractionCreationRequestDTO.getAmende()));
         return response;
     }
     @GetMapping("/events/{infractionId}")

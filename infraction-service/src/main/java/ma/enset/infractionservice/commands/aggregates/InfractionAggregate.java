@@ -1,9 +1,7 @@
 package ma.enset.infractionservice.commands.aggregates;
 
 import ma.enset.commonapi.commands.CreateInfractionCommand;
-import ma.enset.commonapi.commands.CreateOwnerCommand;
 import ma.enset.commonapi.events.InfractionCreatedEvent;
-import ma.enset.commonapi.events.OwnerCreatedEvent;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
@@ -37,7 +35,8 @@ public class InfractionAggregate {
                 command.getVehicleSpeed(),
                 command.getDate(),
                 command.getRadarId(),
-                command.getMaxSpeedAllowed()));
+                command.getMaxSpeedAllowed(),
+                command.getAmende()));
     }
     @EventSourcingHandler
     public void on(InfractionCreatedEvent event) {
@@ -47,15 +46,7 @@ public class InfractionAggregate {
         this.date = event.getDate();
         this.radarId = event.getRadarId();
         this.maxSpeedAllowed = event.getMaxSpeedAllowed();
+        this.amende = event.getAmende();
     }
 
-    @CommandHandler
-    public void handle(CreateOwnerCommand command){
-        AggregateLifecycle.apply(new OwnerCreatedEvent(
-                command.getId(),
-                command.getName(),
-                command.getDateOfBirth(),
-                command.getEmail())
-        );
-    }
 }
